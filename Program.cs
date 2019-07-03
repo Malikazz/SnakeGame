@@ -6,10 +6,11 @@ namespace SnakeGame
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Press any key to exit");
+            Console.WriteLine("Press ESC key to close window");
             var window = new SimpleWindow();
             window.Run();
-            Console.WriteLine("All Done");
+
+            Console.WriteLine("All done");
         }
     }
 }
