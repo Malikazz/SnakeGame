@@ -4,8 +4,8 @@ namespace SnakeGame
         {
             public void Run()
             {
-                var mode = new SFML.Window.VideoMode(800, 600);
-                var window = new SFML.Graphics.RenderWindow(mode, "SFML works!");
+                var mode = new SFML.Window.VideoMode(600, 600);
+                var window = new SFML.Graphics.RenderWindow(mode, "Malikaz Snake");
                 window.KeyPressed += Window_KeyPressed;
 
                 var circle = new SFML.Graphics.CircleShape(100f)
