@@ -10,7 +10,8 @@ namespace SnakeGame
             var window = new SimpleWindow();
             window.Run();
 
-            Console.WriteLine("All done");
+            Console.WriteLine("All done"); 
+            //testing git setup
         }
     }
 }
