@@ -1,19 +1,18 @@
+using System.Numerics;
 namespace SnakeGame
 {
     public class Snake
     {
         public int PosX { get; set; }
         public int PosY { get; set; }
-        public int SizeX { get; set; }
-        public int SizeY { get; set; }
+        public Vector2 Size { get; set; }
         public bool IsHead { get; set; }
         public bool IsActive { get; set; }         
-        Snake(int posX, int posY, int sizeX, int sizeY, bool isHead, bool isActive)
+        Snake(int posX, int posY, float sizeX, float sizeY, bool isHead, bool isActive)
         {
             PosX = posX;
             PosY = posY;
-            SizeX = sizeX;
-            SizeY = sizeY;
+            Size = new Vector2(sizeX,sizeY);
             IsHead = isHead;
             IsActive = isActive;
         }

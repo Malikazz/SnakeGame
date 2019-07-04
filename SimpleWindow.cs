@@ -1,14 +1,17 @@
+using SFML;
 namespace SnakeGame
 {
-    class SimpleWindow
+    public class SimpleWindow
         {
+            public const int WINDOW = 600;
             public void Run()
             {
-                var mode = new SFML.Window.VideoMode(600, 600);
+                var mode = new SFML.Window.VideoMode(WINDOW, WINDOW);
                 var window = new SFML.Graphics.RenderWindow(mode, "Malikaz Snake");
                 window.KeyPressed += Window_KeyPressed;
-
-                var circle = new SFML.Graphics.CircleShape(100f)
+                Snake[] snakes = new Snake[200];
+                Food food = new Food(10f, 10f, WINDOW);
+                snakes = new SFML.Graphics.RectangleShape.()
                 {
                     FillColor = SFML.Graphics.Color.Blue
                 };
@@ -18,7 +21,7 @@ namespace SnakeGame
                 {
                     // Process events
                     window.DispatchEvents();
-                    window.Draw(circle);
+                    window.Draw(//Add object to be drawn);
 
                     // Finally, display the rendered frame on screen
                     window.Display();
