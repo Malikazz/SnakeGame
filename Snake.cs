@@ -25,11 +25,9 @@ namespace SnakeGame
             Size = new Vector2f (sizeX,sizeY);
             IsHead = isHead;
             IsActive = isActive;
-            SnakeShape = new RectangleShape(Size)
-            {
-                
-                FillColor = Color.Blue
-            };
+            SnakeShape = new RectangleShape(Size);
+            SnakeShape.Position = Position;
+            SnakeShape.FillColor = Color.Magenta;
         }
 
     }
