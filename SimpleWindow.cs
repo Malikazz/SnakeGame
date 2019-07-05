@@ -11,17 +11,14 @@ namespace SnakeGame
                 window.KeyPressed += Window_KeyPressed;
                 Snake[] snakes = new Snake[200];
                 Food food = new Food(10f, 10f, WINDOW);
-                snakes = new SFML.Graphics.RectangleShape.()
-                {
-                    FillColor = SFML.Graphics.Color.Blue
-                };
+                snakes[0] = new Snake(300f, 300f, 10f, 10f, true, true);
 
                 // Start the game loop
                 while (window.IsOpen)
                 {
                     // Process events
                     window.DispatchEvents();
-                    window.Draw(//Add object to be drawn);
+                    window.Draw(food.FoodShape);
 
                     // Finally, display the rendered frame on screen
                     window.Display();

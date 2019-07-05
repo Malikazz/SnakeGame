@@ -1,15 +1,16 @@
-using System.Numerics;
 using System;
+using SFML.System;
+using SFML.Graphics;
 
 namespace SnakeGame
+
 {
     public class Food
     {
         static Random rnd = new Random();
-        public int PosX { get; set; }
-        public int PosY { get; set; }
-
-        public Vector2 Size { get; set; }
+        public Vector2f Position { get; set; }
+        public RectangleShape FoodShape { get; set; }
+        public Vector2f Size { get; set; }
 
         /// <summary>
         /// Will Create a food object with random values 0 - windowsize + 1 
@@ -19,11 +20,13 @@ namespace SnakeGame
         /// <param name="constWindowSize"></param>
         public Food(float sizeX, float sizeY, int constWindowSize)
         {
-            int random1 = rnd.Next(0, constWindowSize + 1);
-            int random2 = rnd.Next(0, constWindowSize + 1);
-            PosX = random1;
-            PosY = random2;
-            Size = new Vector2(sizeX,sizeY);
+            float random1 = rnd.Next(0, constWindowSize + 1);
+            float random2 = rnd.Next(0, constWindowSize + 1);
+            Position = new Vector2f(random1, random2);
+            Size = new Vector2f(sizeX,sizeY);
+            FoodShape = new RectangleShape(Size);
+            FoodShape.Position = Position;
+            FoodShape.FillColor = Color.Blue;
         }
     }
 }
