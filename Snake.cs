@@ -1,11 +1,22 @@
+using System;
 using System.Numerics;
 using System.Diagnostics;
 using SFML.Graphics;
 using SFML.System;
 namespace SnakeGame
 {
+
     public class Snake
     {
+        private enum MoveDirection : int
+        {
+            LEFT, RIGHT, UP, DOWN
+        };
+        private MoveDirection? _currentMoveDirection = null;
+        private Vector2f _moveLeft = new Vector2f(-10, 0);
+        private Vector2f _moveRight = new Vector2f(10, 0);
+        private Vector2f _moveUp = new Vector2f(0, -10);
+        private Vector2f _moveDown = new Vector2f(0, 10);
         public Vector2f Position { get; set; }
         public  Vector2f Size { get; set; }
         public bool IsHead { get; set; }
@@ -31,11 +42,60 @@ namespace SnakeGame
             SnakeShape.FillColor = Color.Magenta;
         }
 
-        public void MoveSnake(Snake[] snakeArray, SFML.Window.KeyEvent keyboard)
+        public void MoveSnake(Snake[] snakeArray)
         {
-            
+            if (_currentMoveDirection != null)
+            {
+                Position = SnakeShape.Position;
+                switch (_currentMoveDirection)
+                {
+                    case MoveDirection.LEFT:
+                        {
+                            Vector2f newPosition = Position + _moveLeft;
+                            SnakeShape.Position = newPosition;
+                            break;
+                        }
+                    case MoveDirection.RIGHT:
+                        {
+                            Vector2f newPosition = Position + _moveRight;
+                            SnakeShape.Position = newPosition;
+                            break;
+                        }
+                    case MoveDirection.UP:
+                        {
+                            Vector2f newPosition = Position + _moveUp;
+                            SnakeShape.Position = newPosition;
+                            break;
+                        }
+                    case MoveDirection.DOWN:
+                        {
+                            Vector2f newPosition = Position + _moveDown;
+                            SnakeShape.Position = newPosition;
+                            break;
+                        }
+                }
+                
+            }
         }
+        public void SetMoveDirection(SFML.Window.KeyEvent keyboard)
+        {
+            switch (keyboard.ToString())
+            {
+                case "Left":
+                    _currentMoveDirection = MoveDirection.LEFT;
+                    break;
+                case "Down":
+                    _currentMoveDirection = MoveDirection.DOWN;
+                    break;
+                case "Right":
+                    _currentMoveDirection = MoveDirection.RIGHT;
+                    break;
+                case "Up":
+                    _currentMoveDirection = MoveDirection.UP;
+                    break;
 
+            }
+        }
         public void AddTail (Snake[] snakeArray)
         {
             //last position = new pos for create tail
