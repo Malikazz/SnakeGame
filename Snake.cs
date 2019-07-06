@@ -8,7 +8,7 @@ namespace SnakeGame
 
     public class Snake
     {
-        private enum MoveDirection : int
+        private enum MoveDirection
         {
             LEFT, RIGHT, UP, DOWN
         };

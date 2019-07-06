@@ -42,6 +42,10 @@ namespace SnakeGame
             {
                 window.Close();
             }
+            else
+            {
+                snake
+            }
         }
     }
 }
