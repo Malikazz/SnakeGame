@@ -42,55 +42,59 @@ namespace SnakeGame
             SnakeShape.FillColor = Color.Magenta;
         }
 
+        public Snake() { }
         public void MoveSnake(Snake[] snakeArray)
         {
-            if (_currentMoveDirection != null)
+            foreach (Snake snakeP in snakeArray)
             {
-                Position = SnakeShape.Position;
-                switch (_currentMoveDirection)
+                if (_currentMoveDirection != null)
                 {
-                    case MoveDirection.LEFT:
-                        {
-                            Vector2f newPosition = Position + _moveLeft;
-                            SnakeShape.Position = newPosition;
-                            break;
-                        }
-                    case MoveDirection.RIGHT:
-                        {
-                            Vector2f newPosition = Position + _moveRight;
-                            SnakeShape.Position = newPosition;
-                            break;
-                        }
-                    case MoveDirection.UP:
-                        {
-                            Vector2f newPosition = Position + _moveUp;
-                            SnakeShape.Position = newPosition;
-                            break;
-                        }
-                    case MoveDirection.DOWN:
-                        {
-                            Vector2f newPosition = Position + _moveDown;
-                            SnakeShape.Position = newPosition;
-                            break;
-                        }
+                    snakeP.Position = snakeP.SnakeShape.Position;
+                    switch (_currentMoveDirection)
+                    {
+                        case MoveDirection.LEFT:
+                            {
+                                Vector2f newPosition = snakeP.Position + _moveLeft;
+                                snakeP.SnakeShape.Position = newPosition;
+                                break;
+                            }
+                        case MoveDirection.RIGHT:
+                            {
+                                Vector2f newPosition = snakeP.Position + _moveRight;
+                                snakeP.SnakeShape.Position = newPosition;
+                                break;
+                            }
+                        case MoveDirection.UP:
+                            {
+                                Vector2f newPosition = snakeP.Position + _moveUp;
+                                snakeP.SnakeShape.Position = newPosition;
+                                break;
+                            }
+                        case MoveDirection.DOWN:
+                            {
+                                Vector2f newPosition = snakeP.Position + _moveDown;
+                                snakeP.SnakeShape.Position = newPosition;
+                                break;
+                            }
+                    }
+
                 }
-                
             }
-        }
-        public void SetMoveDirection(SFML.Window.KeyEvent keyboard)
+            }
+        public void SetMoveDirection(object sender, SFML.Window.KeyEventArgs e)
         {
-            switch (keyboard.ToString())
+            switch (e.Code)
             {
-                case "Left":
+                case SFML.Window.Keyboard.Key.Left:
                     _currentMoveDirection = MoveDirection.LEFT;
                     break;
-                case "Down":
+                case SFML.Window.Keyboard.Key.Down:
                     _currentMoveDirection = MoveDirection.DOWN;
                     break;
-                case "Right":
+                case SFML.Window.Keyboard.Key.Right:
                     _currentMoveDirection = MoveDirection.RIGHT;
                     break;
-                case "Up":
+                case SFML.Window.Keyboard.Key.Up:
                     _currentMoveDirection = MoveDirection.UP;
                     break;
 
