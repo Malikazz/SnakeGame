@@ -11,10 +11,8 @@ namespace SnakeGame
             var window = new SFML.Graphics.RenderWindow(mode, "Malikaz Snake");
             window.KeyPressed += Window_KeyPressed;
             
-            Snake[] snake = new Snake[200];
-            Food food = new Food(300f, 300f, WINDOW);
-            snake[0] = new Snake(300f, 300f, 10f, 10f, true, true);
-            window.KeyPressed += snake[0].SetMoveDirection;
+
+            window.KeyPressed += //Snake Key catcher;
 
             // Start the game loop
             while (window.IsOpen)
