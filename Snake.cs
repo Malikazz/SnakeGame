@@ -36,22 +36,7 @@ namespace SnakeGame
         public Snake() { }
 
 
-        public void AddTail (Snake[] snakeArray)
-        {
-            //last position = new pos for create tail
-        }
 
-        public void CheckForColision(Snake[] snakeArray, Food food)
-        {
-            //counter = 1 to skip head
-            for (int counter1 = 1; counter1 < snakeArray.Length; counter1++)
-            {
-                if(snakeArray[0] == snakeArray[counter1])
-                {
-                    Debug.WriteLine("Colision happened");
-                }
-            }
-        }
     }
 
 }

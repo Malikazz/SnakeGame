@@ -1,4 +1,5 @@
 using SFML;
+using System;
 namespace SnakeGame
 {
     public class SimpleWindow
@@ -6,28 +7,40 @@ namespace SnakeGame
         public const int WINDOW = 600;
         public void Run()
         {
-            
+            GameManager gameManager = new GameManager();
+            //Window Options
             var mode = new SFML.Window.VideoMode(WINDOW, WINDOW);
             var window = new SFML.Graphics.RenderWindow(mode, "Malikaz Snake");
+            //Keyboard Event Handlers
             window.KeyPressed += Window_KeyPressed;
-            
-
-            window.KeyPressed += //Snake Key catcher;
+            window.KeyPressed += gameManager.SetMoveDirection;
+            //Time
+            DateTime timer1 = DateTime.Now;
 
             // Start the game loop
             while (window.IsOpen)
             {
-                window.Clear();
+                DateTime timer2 = DateTime.Now;
+
                 // Process events
                 window.DispatchEvents();
-                foreach(Snake snakePart in snake)
+                if (timer2.Millisecond - timer1.Millisecond == 1000)
                 {
-                    window.Draw(snakePart.SnakeShape);
+                    //Clear Window
+                    window.Clear();
+                    gameManager.MoveSnake(gameManager.snakeArray);
+                    gameManager.CheckForColision(gameManager.snakeArray, gameManager.food);
+
+                    for (int counter = 0; counter < gameManager.snakeArray.Length; counter++)
+                    {
+                        if (gameManager.snakeArray[counter].IsActive == true)
+                        {
+                            window.Draw(gameManager.snakeArray[counter].SnakeShape);
+                        }
+                    }
+                    window.Draw(gameManager.food.FoodShape);
+                    Console.WriteLine(gameManager.snakeArray[0].Position);
                 }
-                
-                window.Draw(food.FoodShape);
-
-
                 // Finally, display the rendered frame on screen
                 window.Display();
             }
