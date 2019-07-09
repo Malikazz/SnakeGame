@@ -20,27 +20,31 @@ namespace SnakeGame
             // Start the game loop
             while (window.IsOpen)
             {
+                //Clear Window
+                window.Clear();
                 DateTime timer2 = DateTime.Now;
 
                 // Process events
                 window.DispatchEvents();
-                if (timer2.Millisecond - timer1.Millisecond == 1000)
+                if (timer2.Second  - timer1.Second >= .5)
                 {
-                    //Clear Window
-                    window.Clear();
+
                     gameManager.MoveSnake(gameManager.snakeArray);
                     gameManager.CheckForColision(gameManager.snakeArray, gameManager.food);
-
-                    for (int counter = 0; counter < gameManager.snakeArray.Length; counter++)
-                    {
-                        if (gameManager.snakeArray[counter].IsActive == true)
-                        {
-                            window.Draw(gameManager.snakeArray[counter].SnakeShape);
-                        }
-                    }
-                    window.Draw(gameManager.food.FoodShape);
+                    timer1 = DateTime.Now;
                     Console.WriteLine(gameManager.snakeArray[0].Position);
                 }
+                //for (int counter = 0; counter < gameManager.snakeArray.Length; counter++)
+                //{
+                //    if (gameManager.snakeArray[counter].IsActive == true)
+                //    {
+                //        window.Draw(gameManager.snakeArray[counter].SnakeShape);
+                //    }
+                //}
+                window.Draw(gameManager.snakeArray[0].SnakeShape);
+                window.Draw(gameManager.food.FoodShape);
+
+
                 // Finally, display the rendered frame on screen
                 window.Display();
             }
