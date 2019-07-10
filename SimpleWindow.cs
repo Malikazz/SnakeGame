@@ -15,7 +15,8 @@ namespace SnakeGame
             //Keyboard Event Handlers
             window.KeyPressed += Window_KeyPressed;
             window.KeyPressed += gameManager.SetMoveDirection;
-          
+
+
             //Time
             DateTime timer1 = DateTime.Now;
 
@@ -38,6 +39,10 @@ namespace SnakeGame
                     timer1 = DateTime.Now;
                     Console.WriteLine(gameManager.snakeArray[0].Position);
                 }
+                else if(gameManager.GameIsActive == false)
+                {
+                    window.Draw(gameManager.gameText.GameOverText);
+                }
                 for (int counter = 0; counter < gameManager.snakeArray.Length; counter++)
                 {
                     if (gameManager.snakeArray[counter].IsActive == true)
@@ -45,6 +50,8 @@ namespace SnakeGame
                         window.Draw(gameManager.snakeArray[counter].SnakeShape);
                     }
                 }
+
+                window.Draw(gameManager.gameText.ScoreText);
                 window.Draw(gameManager.food.FoodShape);
 
 

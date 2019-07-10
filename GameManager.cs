@@ -25,9 +25,11 @@ namespace SnakeGame
         public Snake[] snakeArray = new Snake[200];
         public Food food;
         public bool GameIsActive = true;
+        public GameText gameText { get; set; }
+        private int _score = 0;
 
 
-  
+
         public GameManager()
         {
             snakeArray[0] = new Snake(300f, 300f, 10f, 10f, true, true);
@@ -36,6 +38,7 @@ namespace SnakeGame
                 snakeArray[counter] = new Snake(300f, 300f, 10f, 10f, false, false);
             }
             food = new Food(10f, 10f, SimpleWindow.WINDOW);
+            gameText = new GameText(_score.ToString());
         }
 
         /// <summary>
@@ -146,10 +149,14 @@ namespace SnakeGame
                     GameIsActive = false;
                 }
             }
+            //Food
             if (snakeArray[0].SnakeShape.Position == food.FoodShape.Position)
             {
                 AddTail(ref snakeArray);
                 food = new Food(10f, 10f, SimpleWindow.WINDOW);
+                _score += 10;
+                gameText = new GameText(_score.ToString());
+                
             }
             if (snakeArray[0].SnakeShape.Position.X > 600 || snakeArray[0].SnakeShape.Position.X < 0 || snakeArray[0].SnakeShape.Position.Y > 600 || snakeArray[0].SnakeShape.Position.Y < 0)
             {
