@@ -29,19 +29,18 @@ namespace SnakeGame
                 if (timer2.Second  - timer1.Second >= .5)
                 {
 
-                    gameManager.MoveSnake(gameManager.snakeArray);
-                    gameManager.CheckForColision(gameManager.snakeArray, gameManager.food);
+                    gameManager.MoveSnake(ref gameManager.snakeArray);
+                    gameManager.CheckForColision(ref gameManager.snakeArray, ref gameManager.food);
                     timer1 = DateTime.Now;
                     Console.WriteLine(gameManager.snakeArray[0].Position);
                 }
-                //for (int counter = 0; counter < gameManager.snakeArray.Length; counter++)
-                //{
-                //    if (gameManager.snakeArray[counter].IsActive == true)
-                //    {
-                //        window.Draw(gameManager.snakeArray[counter].SnakeShape);
-                //    }
-                //}
-                window.Draw(gameManager.snakeArray[0].SnakeShape);
+                for (int counter = 0; counter < gameManager.snakeArray.Length; counter++)
+                {
+                    if (gameManager.snakeArray[counter].IsActive == true)
+                    {
+                        window.Draw(gameManager.snakeArray[counter].SnakeShape);
+                    }
+                }
                 window.Draw(gameManager.food.FoodShape);
 
 

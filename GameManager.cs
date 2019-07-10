@@ -41,7 +41,7 @@ namespace SnakeGame
         /// Starts at back of tail and moves all Position data down the array one spot
         /// </summary>
         /// <param name="snakeArray"></param>
-        public void MoveSnake(Snake[] snakeArray)
+        public void MoveSnake(ref Snake[] snakeArray)
         {
 
             if (_currentMoveDirection != null)
@@ -112,7 +112,7 @@ namespace SnakeGame
         /// Flips a bool on the next element that it finds to be flipable to cause that Snake to be drawn
         /// </summary>
         /// <param name="snakeArray"></param>
-        public void AddTail(Snake[] snakeArray)
+        public void AddTail(ref Snake[] snakeArray)
         {
             bool NotFoundUnActiveSnake = true;
             int counter = 1;
@@ -135,7 +135,7 @@ namespace SnakeGame
         /// </summary>
         /// <param name="snakeArray"></param>
         /// <param name="food"></param>
-        public void CheckForColision(Snake[] snakeArray, Food food)
+        public void CheckForColision(ref Snake[] snakeArray, ref Food food)
         {
             //counter = 1 to skip head
             for (int counter1 = 1; counter1 < snakeArray.Length; counter1++)
@@ -147,7 +147,7 @@ namespace SnakeGame
             }
             if (snakeArray[0].Position == food.Position)
             {
-                AddTail(snakeArray);
+                AddTail(ref snakeArray);
             }
         }
     }
