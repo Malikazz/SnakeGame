@@ -20,8 +20,32 @@ namespace SnakeGame
         /// <param name="constWindowSize"></param>
         public Food(float sizeX, float sizeY, int constWindowSize)
         {
-            float random1 = rnd.Next(0, constWindowSize + 1);
-            float random2 = rnd.Next(0, constWindowSize + 1);
+            int random1 = rnd.Next(0, constWindowSize + 1);
+            int random2 = rnd.Next(0, constWindowSize + 1);
+            if (random1 % 10 != 0)
+            {
+                if (random1 % 10 < 5)
+                {
+                    random1 -= random1 % 10;
+                }
+                else
+                {
+                    random1 += 5;
+                    random1 -= random1 % 10;
+                }
+            }
+            if (random2 % 10 != 0)
+            {
+                if (random2 % 10 < 5)
+                {
+                    random2 -= random2 % 10;
+                }
+                else
+                {
+                    random2 += 5;
+                    random2 -= random2 % 10;
+                }
+            }
             Position = new Vector2f(random1, random2);
             Size = new Vector2f(sizeX,sizeY);
             FoodShape = new RectangleShape(Size);

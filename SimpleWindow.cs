@@ -5,6 +5,7 @@ namespace SnakeGame
     public class SimpleWindow
     {
         public const int WINDOW = 600;
+        
         public void Run()
         {
             GameManager gameManager = new GameManager();
@@ -14,19 +15,22 @@ namespace SnakeGame
             //Keyboard Event Handlers
             window.KeyPressed += Window_KeyPressed;
             window.KeyPressed += gameManager.SetMoveDirection;
+          
             //Time
             DateTime timer1 = DateTime.Now;
 
             // Start the game loop
             while (window.IsOpen)
             {
+                System.Threading.Thread.Sleep(5);
                 //Clear Window
                 window.Clear();
                 DateTime timer2 = DateTime.Now;
 
                 // Process events
                 window.DispatchEvents();
-                if (timer2.Second  - timer1.Second >= .5)
+                TimeSpan timeSinceLastUpdate = timer2 - timer1;
+                if (timeSinceLastUpdate.TotalSeconds >= .1 && gameManager.GameIsActive == true)
                 {
 
                     gameManager.MoveSnake(ref gameManager.snakeArray);
@@ -59,6 +63,12 @@ namespace SnakeGame
             {
                 window.Close();
             }
+
+        }
+        private void Window_Close(object sender, EventArgs e)
+        {
+            var window = (SFML.Window.Window)sender;
+            window.Close();
         }
     }
 }

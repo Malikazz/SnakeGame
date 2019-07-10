@@ -24,6 +24,7 @@ namespace SnakeGame
         private Vector2f _moveDown = new Vector2f(0, 10);
         public Snake[] snakeArray = new Snake[200];
         public Food food;
+        public bool GameIsActive = true;
 
 
   
@@ -48,33 +49,33 @@ namespace SnakeGame
             {
                 for (int counter = snakeArray.Length - 1; counter >= 1; counter--)
                 {
-                    snakeArray[counter].Position = snakeArray[counter - 1].Position;
+                    snakeArray[counter].SnakeShape.Position = snakeArray[counter - 1].SnakeShape.Position;
                 }
 
                 switch (_currentMoveDirection)
                 {
                     case MoveDirection.LEFT:
                         {
-                            Vector2f newPosition = snakeArray[0].Position + _moveLeft;
-                            snakeArray[0].Position = newPosition;
+                            Vector2f newPosition = snakeArray[0].SnakeShape.Position + _moveLeft;
+                            snakeArray[0].SnakeShape.Position = newPosition;
                             break;
                         }
                     case MoveDirection.RIGHT:
                         {
-                            Vector2f newPosition = snakeArray[0].Position + _moveRight;
-                            snakeArray[0].Position = newPosition;
+                            Vector2f newPosition = snakeArray[0].SnakeShape.Position + _moveRight;
+                            snakeArray[0].SnakeShape.Position = newPosition;
                             break;
                         }
                     case MoveDirection.UP:
                         {
-                            Vector2f newPosition = snakeArray[0].Position + _moveUp;
-                            snakeArray[0].Position = newPosition;
+                            Vector2f newPosition = snakeArray[0].SnakeShape.Position + _moveUp;
+                            snakeArray[0].SnakeShape.Position = newPosition;
                             break;
                         }
                     case MoveDirection.DOWN:
                         {
-                            Vector2f newPosition = snakeArray[0].Position + _moveDown;
-                            snakeArray[0].Position = newPosition;
+                            Vector2f newPosition = snakeArray[0].SnakeShape.Position + _moveDown;
+                            snakeArray[0].SnakeShape.Position = newPosition;
                             break;
                         }
                 }
@@ -140,14 +141,19 @@ namespace SnakeGame
             //counter = 1 to skip head
             for (int counter1 = 1; counter1 < snakeArray.Length; counter1++)
             {
-                if (snakeArray[0] == snakeArray[counter1] && snakeArray[counter1].IsActive == true)
+                if (snakeArray[0].SnakeShape.Position == snakeArray[counter1].SnakeShape.Position && snakeArray[counter1].IsActive == true)
                 {
-                    Debug.WriteLine("Colision Happened with head to tail");
+                    GameIsActive = false;
                 }
             }
-            if (snakeArray[0].Position == food.Position)
+            if (snakeArray[0].SnakeShape.Position == food.FoodShape.Position)
             {
                 AddTail(ref snakeArray);
+                food = new Food(10f, 10f, SimpleWindow.WINDOW);
+            }
+            if (snakeArray[0].SnakeShape.Position.X > 600 || snakeArray[0].SnakeShape.Position.X < 0 || snakeArray[0].SnakeShape.Position.Y > 600 || snakeArray[0].SnakeShape.Position.Y < 0)
+            {
+                GameIsActive = false;
             }
         }
     }
