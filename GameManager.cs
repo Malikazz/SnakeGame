@@ -134,6 +134,22 @@ namespace SnakeGame
             }
         }
 
+        public void RestartGame(object sender, SFML.Window.KeyEventArgs e)
+        {
+            if(GameIsActive == false && e.Code == SFML.Window.Keyboard.Key.Space)
+            {
+                GameIsActive = true;
+                _score = 0;
+                snakeArray[0] = new Snake(300f, 300f, 10f, 10f, true, true);
+                for (int counter = 1; counter < snakeArray.Length; counter++)
+                {
+                    snakeArray[counter] = new Snake(300f, 300f, 10f, 10f, false, false);
+                }
+                food = new Food(10f, 10f, SimpleWindow.WINDOW);
+                gameText = new GameText(_score.ToString());
+                _currentMoveDirection = null;
+            }
+        }
         /// <summary>
         /// Checks for Head to tail colision as well as head to food
         /// </summary>

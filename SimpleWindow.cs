@@ -15,6 +15,7 @@ namespace SnakeGame
             //Keyboard Event Handlers
             window.KeyPressed += Window_KeyPressed;
             window.KeyPressed += gameManager.SetMoveDirection;
+            window.KeyPressed += gameManager.RestartGame;
 
 
             //Time
@@ -37,7 +38,6 @@ namespace SnakeGame
                     gameManager.MoveSnake(ref gameManager.snakeArray);
                     gameManager.CheckForColision(ref gameManager.snakeArray, ref gameManager.food);
                     timer1 = DateTime.Now;
-                    Console.WriteLine(gameManager.snakeArray[0].Position);
                 }
                 else if(gameManager.GameIsActive == false)
                 {

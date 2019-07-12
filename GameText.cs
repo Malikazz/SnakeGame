@@ -18,7 +18,7 @@ namespace SnakeGame
             Score = score;
             FontFaimly = new Font(fontFaimly);
             ScoreText = new Text(_ScoreMessage + Score, FontFaimly,16);
-            _GameOverMessage = "GAMEOVER! You got " + Score + " Points try and do better!";
+            _GameOverMessage = "GAMEOVER! You got " + Score + " GOOD JOB!, hit SPACE to try again";
             GameOverText = new Text(_GameOverMessage, FontFaimly,16);
             GameOverText.Position = new SFML.System.Vector2f(140f, 300f);
         }
